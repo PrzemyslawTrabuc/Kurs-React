@@ -4,9 +4,38 @@ import axios from 'axios';
 const Search = () =>{
 
     const [term,setTerm] = useState('React');
+    const [debouncedTerm, setDebouncedTerm] = useState(term)
     const [results,setResults]=useState([]);
 
     useEffect(()=>{
+        const timerId = setTimeout(()=>{
+            setDebouncedTerm(term)
+        },800)
+
+        return()=>{
+            clearTimeout(timerId);
+        };
+    },[term])
+
+    useEffect(()=>{
+        const searchWiki = async() =>{
+            const {data} = await axios.get('https://pl.wikipedia.org/w/api.php',{
+                params:{
+                    action: 'query',
+                    list: 'search',
+                    origin: '*',
+                    format: 'json',
+                    srsearch: debouncedTerm,
+                },
+            });
+            if(debouncedTerm) {
+                setResults(data.query.search);
+            }
+        };
+        searchWiki();
+    },[debouncedTerm])
+
+    /*useEffect(()=>{
        const searchWiki = async() =>{
             const {data} = await axios.get('https://pl.wikipedia.org/w/api.php',{
                 params:{
@@ -43,7 +72,7 @@ const Search = () =>{
                clearTimeout(timeoutId)
            }
        }
-    },[term]);
+    },[results.length, term]); */
 
     const renderedResult = results.map((results) =>{
         return(
