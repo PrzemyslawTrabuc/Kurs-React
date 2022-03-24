@@ -1,11 +1,12 @@
 import jsonPlaceholder from '../apis/jsonPlaceholder';
 import _ from 'lodash'; // biblioteka przydanytch funkcji JS
 
+
 export const fetchPostsAndUsers =()=> async (dispatch, getState) =>{
     await dispatch(fetchPosts());
     ////////////////// standard
     // const userIds = _.uniq(_.map(getState().posts, 'userId'));
-    // userIds.forEach(id=>dispatch(fetchUser(id)));
+    // userIds.forEach(id=>dispatch(fetchUser(id)));    
     ////////////////// chain version
     _.chain(getState().posts)
         .map('userId')
