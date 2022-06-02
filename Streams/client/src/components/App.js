@@ -6,6 +6,7 @@ import StreamDelete from './streams/StreamDelete'
 import StreamList from './streams/StreamList'
 import StreamShow from './streams/StreamShow'
 import Header from "./Header";
+//1030502307448-nmhaj2n273ahcd1ededol73i83arfotc.apps.googleusercontent.com
 
 
 const App = () =>{
@@ -15,7 +16,7 @@ const App = () =>{
             <Header />
             <Routes>
                 <Route path='/' element={StreamList()}></Route>
-                <Route path="/streams/new" element={StreamCreate()}></Route>
+                <Route path="/streams/new" element={<StreamCreate />}></Route>
                 <Route path="/streams/edit" element={StreamEdit()}></Route>
                 <Route path="/streams/delete" element={StreamDelete()}></Route>
                 <Route path="/streams/show" element={StreamShow()}></Route>
