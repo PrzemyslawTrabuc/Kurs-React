@@ -15,7 +15,7 @@ const App = () =>{
         <BrowserRouter>
             <Header />
             <Routes>
-                <Route path='/' element={StreamList()}></Route>
+                <Route path='/' element={<StreamList />}></Route>
                 <Route path="/streams/new" element={<StreamCreate />}></Route>
                 <Route path="/streams/edit" element={StreamEdit()}></Route>
                 <Route path="/streams/delete" element={StreamDelete()}></Route>
