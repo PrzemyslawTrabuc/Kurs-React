@@ -6,24 +6,30 @@ import {fetchStream} from '../../Actions'
 import streams from "../../apis/streams";
 import {useDispatch} from "react-redux";
 
-const StreamEdit = (props) => {
+const StreamEdit = ({fetchStream, stream}) => {
     const {id} = useParams();
     console.log(id);
 
     useEffect(() => {
-        dispatch(fetchStream(id));
+        fetchStream(id);
     }, [])
 
 
-    const stream = useSelector((state) => state.streams[id]);
-    const dispatch = useDispatch()
+    //const stream = useSelector((state) => state.streams[id]);
     console.log(stream)
 
-    if (stream) {
-        return (<div>StreamEdit {id} {stream.title}</div>)
+    if (stream[id]) {
+        return (<div>StreamEdit {id} {stream[id].title}</div>)
     } else {
         return (<div>Loading...</div>)
     }
 
 };
-export default (StreamEdit);
+
+const mapStateToProps = state => ({
+    stream: state.streams
+});
+
+const mapDispatchToProps = { fetchStream };
+
+export default connect(mapStateToProps, mapDispatchToProps)(StreamEdit);

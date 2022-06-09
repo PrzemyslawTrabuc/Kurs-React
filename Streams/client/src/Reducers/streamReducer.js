@@ -8,7 +8,6 @@ import {
 import _ from 'lodash';
 
 
-
 export default (state = {}, action) =>{
     // [action.payload.id] IS KEY INTERPOLATION ////
     switch(action.type){
