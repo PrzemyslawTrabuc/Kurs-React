@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes, unstable_HistoryRouter as HistoryRouter} from "react-router-dom";
+import {Route, Routes, unstable_HistoryRouter as HistoryRouter, BrowserRouter} from "react-router-dom";
 import StreamCreate from './streams/StreamCreate';
 import StreamEdit from './streams/StreamEdit'
 import StreamDelete from './streams/StreamDelete'
@@ -13,16 +13,16 @@ import history from '../history';
 const App = () =>{
     return (
         <div className="ui container">
-        <HistoryRouter history={history}>
+        <BrowserRouter>
             <Header />
             <Routes>
                 <Route path='/' element={<StreamList />}></Route>
                 <Route path="/streams/new" element={<StreamCreate />}></Route>
-                <Route path="/streams/edit" element={StreamEdit()}></Route>
-                <Route path="/streams/delete" element={StreamDelete()}></Route>
-                <Route path="/streams/show" element={StreamShow()}></Route>
+                <Route path="/streams/edit/:id" element={<StreamEdit />}></Route>
+                <Route path="/streams/delete" element={<StreamDelete />}></Route>
+                <Route path="/streams/show" element={<StreamShow />}></Route>
             </Routes>
-        </HistoryRouter>
+        </BrowserRouter>
         </div>
     )
 }

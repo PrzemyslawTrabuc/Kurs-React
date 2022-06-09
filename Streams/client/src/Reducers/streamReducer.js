@@ -17,8 +17,10 @@ export default (state = {}, action) =>{
             let newObject = {};
             action.payload.forEach(stream => newObject[stream.id] = stream);
             return newObject;
-            // return {...state, ..._.mapKeys([action.payload, "id"])}; lodash library approach
+            //return {...state, ..._.mapKeys([action.payload, 'id'])}; //lodash library approach
         case CREATE_STREAM:
+            return {...state, [action.payload.id]: action.payload};
+        case FETCH_STREAM:
             return {...state, [action.payload.id]: action.payload};
         case EDIT_STREAM:
             return {...state, [action.payload.id]: action.payload};
