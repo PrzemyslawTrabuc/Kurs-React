@@ -9,6 +9,12 @@
       "title": "LoL",
       "description": "Diamond ranked games",
       "id": 2
+    },
+    {
+      "title": "Stream with ID",
+      "description": "ID Test",
+      "userId": "116822369784769526729",
+      "id": 3
     }
   ]
 }
