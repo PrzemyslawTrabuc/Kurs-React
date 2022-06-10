@@ -13,7 +13,7 @@ import history from '../history';
 const App = () =>{
     return (
         <div className="ui container">
-        <BrowserRouter>
+        <HistoryRouter history={history}>
             <Header />
             <Routes>
                 <Route path='/' element={<StreamList />}></Route>
@@ -22,7 +22,7 @@ const App = () =>{
                 <Route path="/streams/delete" element={<StreamDelete />}></Route>
                 <Route path="/streams/show" element={<StreamShow />}></Route>
             </Routes>
-        </BrowserRouter>
+        </HistoryRouter>
         </div>
     )
 }

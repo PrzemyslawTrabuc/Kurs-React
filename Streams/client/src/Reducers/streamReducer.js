@@ -12,11 +12,11 @@ export default (state = {}, action) =>{
     // [action.payload.id] IS KEY INTERPOLATION ////
     switch(action.type){
         case FETCH_STREAMS:
-            console.log(action.payload);
+            //console.log(action.payload);
             let newObject = {};
             action.payload.forEach(stream => newObject[stream.id] = stream);
             return newObject;
-            //return {...state, ..._.mapKeys([action.payload, 'id'])}; //lodash library approach
+            //return {...state, ..._.mapKeys(action.payload, 'id')}; //lodash library approach
         case CREATE_STREAM:
             return {...state, [action.payload.id]: action.payload};
         case FETCH_STREAM:

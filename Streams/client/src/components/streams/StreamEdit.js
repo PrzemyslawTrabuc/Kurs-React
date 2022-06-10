@@ -1,35 +1,41 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {connect} from "react-redux";
-import {useSelector} from "react-redux";
-import {fetchStream} from '../../Actions'
-import streams from "../../apis/streams";
-import {useDispatch} from "react-redux";
+import {fetchStream, editStream} from '../../Actions';
+import StreamForm from './StreamForm';
 
-const StreamEdit = ({fetchStream, stream}) => {
+const StreamEdit = ({fetchStream, editStream, stream}) => {
     const {id} = useParams();
-    console.log(id);
-
+    //stream = stream[id];
     useEffect(() => {
-        fetchStream(id);
+        if (!stream)
+            fetchStream(id);
     }, [])
 
+    const onSubmit = (formValues) => {
+        console.log(id, formValues);
+        editStream(id,formValues);
+    }
 
-    //const stream = useSelector((state) => state.streams[id]);
-    console.log(stream)
-
-    if (stream[id]) {
-        return (<div>StreamEdit {id} {stream[id].title}</div>)
+    if (stream) {
+        console.log(stream)
+        return (
+            <div>
+                <h3>Edit a Stream</h3>
+                <StreamForm
+                    onSubmit={onSubmit}
+                    initialValues={{title: stream.title, description: stream.description}}
+                />
+            </div>
+        )
     } else {
         return (<div>Loading...</div>)
     }
-
 };
-
-const mapStateToProps = state => ({
-    stream: state.streams
+const mapStateToProps = (state) => ({
+    stream: state.streams[window.location.pathname.split("/")[window.location.pathname.split('/').length - 1]]
 });
 
-const mapDispatchToProps = { fetchStream };
+// const mapDispatchToProps = { fetchStream, editStream };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StreamEdit);
+export default connect(mapStateToProps, {fetchStream, editStream})(StreamEdit);
