@@ -25,7 +25,7 @@ export default (state = {}, action) =>{
             return {...state, [action.payload.id]: action.payload};
         case DELETE_STREAM:
             // return _.omit(state, action.payload); lodash library approach
-            return {...state, [action.payload.id]: undefined}
+            return {state, [action.payload.id]: action.payload}
         default:
             return state;
     }

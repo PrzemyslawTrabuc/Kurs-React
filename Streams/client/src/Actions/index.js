@@ -25,13 +25,12 @@ export const createStream = formValues => async (dispatch, getState) =>{
 
 export const fetchStreams = () => async dispatch =>{
     const response = await streams.get('/streams');
-
+    console.log("fetched")
     dispatch({type: FETCH_STREAMS, payload:response.data})
 };
 
 export const fetchStream = id => async dispatch =>{
     const response = await streams.get(`/streams/${id}`)
-    console.log("test")
 
     dispatch({type: FETCH_STREAM, payload:response.data})
 };
@@ -44,7 +43,8 @@ export const editStream = (id, formValues) => async dispatch =>{
 };
 
 export const deleteStream = id => async dispatch =>{
-    await streams.put(`/streams${id}`);
+    await streams.delete(`/streams/${id}`);
 
     dispatch({type: DELETE_STREAM, payload: id})
+    history.push('/');
 };
