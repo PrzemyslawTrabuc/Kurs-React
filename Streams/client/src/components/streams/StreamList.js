@@ -34,14 +34,14 @@ class StreamList extends React.Component {
     renderList() {
         return this.props.streams.map(stream => {
             return (
-                <div className="item" key={stream.id}>
+                <Link to={`/streams/${stream.id}`} className="item" key={stream.id}>
                     {this.renderAdminButtons(stream)}
                     <i className="large middle aligned icon camera"></i>
                     <div className="content">
                         {stream.title}
                         <div className="description">{stream.description}</div>
                     </div>
-                </div>
+                </Link>
             )
         })
     }

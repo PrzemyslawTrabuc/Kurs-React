@@ -7,6 +7,7 @@ import StreamList from './streams/StreamList'
 import StreamShow from './streams/StreamShow'
 import Header from "./Header";
 import history from '../history';
+import '../style/App.css'
 //1030502307448-nmhaj2n273ahcd1ededol73i83arfotc.apps.googleusercontent.com
 
 
@@ -20,7 +21,7 @@ const App = () =>{
                 <Route path="/streams/new" element={<StreamCreate />}></Route>
                 <Route path="/streams/edit/:id" element={<StreamEdit />}></Route>
                 <Route path="/streams/delete/:id" element={<StreamDelete />}></Route>
-                <Route path="/streams/show" element={<StreamShow />}></Route>
+                <Route path="/streams/:id" element={<StreamShow />}></Route>
             </Routes>
         </HistoryRouter>
         </div>
