@@ -1,44 +1,23 @@
-import React, {useState} from 'react';
-import UserCreate from "./UserCreate";
-import LanguageContext from "../context/LanguageContext";
-import ColorContext from "../context/ColorContext";
+import React from 'react';
+import UserCreate from './UserCreate';
+import { LanguageStore } from '../contexts/LanguageContext';
+import ColorContext from '../contexts/ColorContext';
+import LanguageSelector from './LanguageSelector';
 
-const App = () =>{
-    const [language, setLanguage] = useState('english');
-    const [color, setColor] = useState('primary')
+class App extends React.Component {
+  render() {
+    return (
+      <div className="ui container">
+        <LanguageStore>
+          <LanguageSelector />
 
-    const onLanguageChange = (language) =>{
-        setLanguage(language);
-    }
-
-    const onColorChange = (color) =>{
-        setColor(color);
-    }
-
-
-    return(
-        <div className="ui container">
-            <div>
-                Select a language:
-                <i className="flag us" onClick={()=> {
-                    onLanguageChange('english');
-                    onColorChange('primary')
-                }} >
-
-                </i>
-                <i className="flag nl" onClick={()=> {
-                    onLanguageChange('dutch');
-                    onColorChange('red')}}
-                    >
-                </i>
-            </div>
-            <ColorContext.Provider value={color}>
-            <LanguageContext.Provider value={language}>
-                <UserCreate />
-            </LanguageContext.Provider>
-            </ColorContext.Provider>
-        </div>
-    )
+          <ColorContext.Provider value="red">
+            <UserCreate />
+          </ColorContext.Provider>
+        </LanguageStore>
+      </div>
+    );
+  }
 }
 
-export default App
+export default App;
