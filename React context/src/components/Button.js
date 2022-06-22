@@ -1,6 +1,5 @@
 import React from 'react';
 import LanguageContext from '../contexts/LanguageContext';
-import ColorContext from '../contexts/ColorContext';
 
 class Button extends React.Component {
   renderSubmit(language) {
@@ -19,9 +18,9 @@ class Button extends React.Component {
 
   render() {
     return (
-      <ColorContext.Consumer>
-        {color => this.renderButton(color)}
-      </ColorContext.Consumer>
+      <LanguageContext.Consumer>
+        {({color}) => this.renderButton(color)}
+      </LanguageContext.Consumer>
     );
   }
 }
