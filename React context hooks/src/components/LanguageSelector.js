@@ -9,11 +9,16 @@ const LanguageSelector = () => {
         <div>
             Select a language:
             <i
-                onClick={() => onLanguageChange('english')}
+                onClick={() => {
+                    onLanguageChange('english', 'primary')
+                }}
                 className="flag us"
             ></i>
             <i
-                onClick={() => onLanguageChange('dutch')}
+                onClick={() => {
+                    onLanguageChange('dutch', 'red')
+                }
+            }
                 className="flag nl"
             ></i>
         </div>
